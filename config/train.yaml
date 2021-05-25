@@ -1,0 +1,49 @@
+work_dir: ./work_dir/NEL/STAA_GCN/1
+target_names: ['NC', 'EMCI', 'LMCI']
+
+# feeder
+feeder: feeder.feeder_enhance.Feeder
+train_feeder_args:
+  random_choose: False
+  random_move: False
+  enhance: True
+  window_size: 60
+  window_stride : 10
+  data_path: ./data/NEL/train_data_1.npy
+  label_path: ./data/NEL/train_label_1.pkl
+test_feeder_args:
+  data_path: ./data/NEL/val_data_1.npy
+  label_path: ./data/NEL/val_label_1.pkl
+
+# model
+model: net.aa_gcn.Model
+model_args:
+  in_channels: 90
+  num_class: 3
+  drop_out: 0.5
+  adaptive: True
+  s_attention: True
+  t_attention: True
+  c_attention: True
+  kernel_size: 3
+  graph_args:
+    layout: 'lasso'
+
+# visulize and debug
+use_gpu: True
+save_interval: 20
+eval_interval: 20
+
+# training
+device: [0]
+batch_size: 64
+test_batch_size: 64
+
+#optim
+base_lr: 10e-4
+optimizer: 'Adam'
+step: [20, 40, 60, 80, 100]
+num_epoch: 100
+
+
+

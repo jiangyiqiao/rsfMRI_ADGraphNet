@@ -1,0 +1,59 @@
+# command line: main.py recognition -c config/staa_gcn/NEL/train_2.yaml
+
+base_lr: 0.001
+batch_size: 64
+config: config/staa_gcn/NEL/train_2.yaml
+debug: false
+device:
+- 0
+eval_interval: 20
+feeder: feeder.feeder_enhance.Feeder
+ignore_weights: []
+log_interval: 100
+model: net.aa_gcn.Model
+model_args:
+    adaptive: true
+    attention: true
+    drop_out: 0.5
+    graph_args:
+        layout: lasso
+    in_channels: 90
+    kernel_size: 3
+    num_class: 3
+nesterov: true
+num_epoch: 100
+num_worker: 4
+optimizer: Adam
+pavi_log: false
+phase: train
+print_log: true
+save_interval: 20
+save_log: true
+save_result: false
+start_epoch: 0
+step:
+- 20
+- 40
+- 60
+- 80
+- 100
+target_names:
+- NC
+- EMCI
+- LMCI
+test_batch_size: 64
+test_feeder_args:
+    data_path: ./data/NEL/val_data_2.npy
+    label_path: ./data/NEL/val_label_2.pkl
+train_feeder_args:
+    data_path: ./data/NEL/train_data_2.npy
+    enhance: true
+    label_path: ./data/NEL/train_label_2.pkl
+    random_choose: false
+    random_move: false
+    window_size: 60
+    window_stride: 20
+use_gpu: false
+weight_decay: 0.0001
+weights: null
+work_dir: ./work_dir/NEL/STAA_GCN

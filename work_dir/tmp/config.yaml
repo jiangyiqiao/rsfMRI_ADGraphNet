@@ -1,0 +1,43 @@
+# command line: main.py recognition -c config/staa_gcn/NEL/test.yaml
+
+base_lr: 0.0001
+batch_size: 256
+config: config/staa_gcn/NEL/test.yaml
+debug: false
+device: 0
+eval_interval: 5
+feeder: feeder.feeder_enhance.Feeder
+ignore_weights: []
+log_interval: 100
+model: net.aa_gcn.Model
+model_args:
+    adaptive: true
+    attention: true
+    drop_out: 0.5
+    graph_args:
+        layout: lasso
+    in_channels: 90
+    kernel_size: 3
+    num_class: 3
+nesterov: true
+num_epoch: 80
+num_worker: 4
+optimizer: SGD
+pavi_log: false
+phase: test
+print_log: true
+save_interval: 10
+save_log: true
+save_result: false
+start_epoch: 0
+step: []
+target_names: null
+test_batch_size: 64
+test_feeder_args:
+    data_path: ./data/NEL/val_data_2.npy
+    label_path: ./data/NEL/val_label_2.pkl
+train_feeder_args: {}
+use_gpu: false
+weight_decay: 0.0001
+weights: ./work_dir/NEL/STAA_GCN/epoch100_model.pt
+work_dir: ./work_dir/tmp

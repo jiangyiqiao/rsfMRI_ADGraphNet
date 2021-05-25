@@ -1,0 +1,24 @@
+weights: ./work_dir/NEL/STAA_GCN/epoch100_model.pt
+
+# feeder
+feeder: feeder.feeder_enhance.Feeder
+test_feeder_args:
+  data_path: ./data/NEL/val_data_2.npy
+  label_path: ./data/NEL/val_label_2.pkl
+
+# model
+model: net.aa_gcn.Model
+model_args:
+  in_channels: 90
+  num_class: 3
+  drop_out: 0.5
+  adaptive: True
+  attention: True
+  kernel_size: 3
+  graph_args:
+    layout: 'lasso'
+
+# test
+phase: test
+use_gpu: False
+test_batch_size: 64
